@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
+import java.awt.*;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,12 +24,18 @@ public class StudentService {
         return studentRepository.findAll();
     }
 
-    public Student createStudent(Student student) {
+    public Student createStudent(Student student, Boolean image) {
         if (student == null) {
             throw new IllegalArgumentException("Student object cannot be null");
         }
+        if (image) {
+            student = studentRepository.save(student);
+            student.setImageName(student.getStudentId() + "_" + student.getName() + ".jpg");
+        }
+
         return studentRepository.save(student);
     }
+
 
     public Optional<Student> deleteStudent(int id) {
         Optional<Student> student = getStudentById(id);
