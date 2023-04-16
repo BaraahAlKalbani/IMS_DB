@@ -25,14 +25,10 @@ public class Student {
 
     @Column
     private String imageName;
-
-
-
     @ManyToMany(mappedBy = "students")
     private Set<Course> courses = new HashSet<>();
 
     // Getter and Setter methods for courses
-
     public Set<Course> getCourses() {
         return courses;
     }

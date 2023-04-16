@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Institute Management System</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="Scripts&css/style.css" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li>
+            <a href="students.html">Students records</a>
+            <ul>
+              <li><a href="students-mod.html">add|Update|delete</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="teachers.html">Teachers records</a>
+            <ul>
+              <li><a href="teachers-mod.html">add|Update|delete</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="courses.html">Courses list</a>
+            <ul>
+              <li><a href="courses-mod.html">add|Update|delete</a></li>
+            </ul>
+          </li>
+          <li><a id="logOut">Sign Out</a></li>
+        </ul>
+        <h3>Institute Management System</h3>
+      </nav>
+    </header>
+
+    <main id="main">
+      <h1>Courses</h1>
+      <br />
+      <div id="tabbed-content" class="tabbed">
+        <input type="radio" name="tabs" id="tab-nav-1" checked />
+        <label for="tab-nav-1">Add</label>
+        <input type="radio" name="tabs" id="tab-nav-2" />
+        <label for="tab-nav-2">Update</label>
+        <input type="radio" name="tabs" id="tab-nav-3" />
+        <label for="tab-nav-3">Delete</label>
+        <div class="tabs">
+          <div>
+            <h2 style="text-align: center">Add a Course</h2>
+            <form>
+              <label for="name1">Name:</label>
+              <input type="text" id="name1" name="name1" required /><br />
+
+              <label for="desc1">Description:</label>
+              <input type="text" id="desc1" name="desc1" required /><br />
+
+              <label for="teacherId1">Assigned Teacher ID:</label><br />
+              <select id="teacherId1" name="teacherId1">
+                <option value="0">Select Teacher ID</option>
+              </select>
+              <button id="add" type="submit">Add</button>
+            </form>
+          </div>
+          <div>
+            <h2 style="text-align: center">Update Course</h2>
+            <form id="update-form">
+              <label>ID:</label><br />
+
+              <select id="id2" name="id2" required>
+                <br />
+                <option value="">Select Course ID</option>
+              </select>
+              <br />
+              <label>Name:</label>
+              <input type="text" id="name2" name="name2" required /><br />
+              <label>Description:</label>
+              <input type="text" id="desc2" name="desc2" required /><br />
+              <label>Assigned Teacher ID:</label><br />
+              <select id="teacherId2" name="teacherId2">
+                <option value="0">Select Teacher ID</option>
+              </select>
+              <button type="submit" id="update">Update</button>
+            </form>
+          </div>
+
+          <div>
+            <h2 style="text-align: center">Delete Course</h2>
+            <form>
+              <label for="id3">ID:</label><br />
+              <select id="id3" name="id3" required>
+                <br />
+                <option value="">Select Course ID</option>
+              </select>
+              <button type="submit" id="delete">Delete</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.6/prefixfree.min.js"></script>
+    <script type="text/javascript" src="Scripts&css/courses-mod.js"></script>
+  </body>
+</html>

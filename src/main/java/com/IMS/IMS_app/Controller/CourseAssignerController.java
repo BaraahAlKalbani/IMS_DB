@@ -6,6 +6,7 @@ import com.IMS.IMS_app.Model.Teacher;
 import com.IMS.IMS_app.Service.CourseService;
 import com.IMS.IMS_app.Service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,6 +15,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/assigner")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class CourseAssignerController {
     @Autowired
     CourseService courseService;

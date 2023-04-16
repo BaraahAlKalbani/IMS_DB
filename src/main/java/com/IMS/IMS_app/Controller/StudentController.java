@@ -4,7 +4,13 @@ import com.IMS.IMS_app.Model.Student;
 import com.IMS.IMS_app.Service.StudentService;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -17,6 +23,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/students")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class StudentController {
     @Autowired
     StudentService studentService;
@@ -46,7 +53,7 @@ public class StudentController {
 
         if(!image.isEmpty()) {
             newStudent = studentService.createStudent(newStudent,true);
-            FileUtils.writeByteArrayToFile(new File("./data/studentsImages/" +newStudent.getImageName()), image.getBytes());
+            FileUtils.writeByteArrayToFile(new File("./src/main/resources/static/data/students_images/" +newStudent.getImageName()), image.getBytes());
         }
         else {
             newStudent = studentService.createStudent(newStudent,false);
@@ -54,6 +61,35 @@ public class StudentController {
         }
         return newStudent;
     }
+
+    @GetMapping("/getImage/{id}")
+    public ResponseEntity<Resource> getImageById(@PathVariable("id") int id) throws IOException {
+        // Retrieve the student by ID from the database or any other source
+        Optional<Student> student = studentService.getStudentById(id);
+
+        if (student.isEmpty()) {
+            // Handle case when student not found
+            return ResponseEntity.notFound().build();
+        }
+        System.out.println(studentService.getStudentImage(id));
+        String imagePath = "./src/main/resources/static/data/students_images/" + studentService.getStudentImage(id);
+        File imageFile = new File(imagePath);
+
+        if (imageFile.exists()) {
+            // Create a Resource object to represent the image file
+            Resource imageResource = new UrlResource(imageFile.toURI());
+
+            // Return the image file as a ResponseEntity with appropriate headers
+            return ResponseEntity.ok()
+                    .contentType(MediaType.IMAGE_JPEG) // Set the appropriate content type for the image
+                    .contentLength(imageResource.contentLength()) // Set the content length of the image
+                    .body(imageResource);
+        } else {
+            // Handle case when image file not found
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     @PutMapping(path = "/{id}")
     public Optional<Student> updateSpecificStudent(@PathVariable int id,@RequestBody Student student){
         return studentService.updateStudent(id,student);

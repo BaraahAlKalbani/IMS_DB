@@ -12,6 +12,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/teachers")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class TeacherController {
     @Autowired
     TeacherService teacherService;

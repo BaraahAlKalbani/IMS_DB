@@ -46,6 +46,7 @@ public class CourseService {
                 (currCourse) -> {
                     currCourse.setName(updatedCourse.getName());
                     currCourse.setDescription(updatedCourse.getDescription());
+                    currCourse.setStudents(updatedCourse.getStudents());
                     currCourse.setAssignedTeacher(updatedCourse.getAssignedTeacher());
                     courseRepository.save(currCourse);
                 }

@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
-import java.awt.*;
 import java.util.List;
 import java.util.Optional;
 
@@ -55,4 +54,9 @@ public class StudentService {
         );
         return foundStudent;
     }
+    public String getStudentImage(int id) {
+        Optional<Student> student = getStudentById(id);
+        return student.map(Student::getImageName).orElse(null);
+    }
+
 }
