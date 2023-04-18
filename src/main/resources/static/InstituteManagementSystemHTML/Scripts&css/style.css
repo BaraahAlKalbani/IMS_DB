@@ -1,0 +1,320 @@
+/* Reset default browser styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  background: radial-gradient(ellipse at bottom, #eff1f3 0%, #6a6a6c 100%);
+  overflow: hidden;
+  height: 100vh; /* Set the height of the body to 100% of the viewport height */
+  margin: 0; /* Remove any default margins */
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+}
+
+/* Style the header */
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+}
+
+/* Center the header title */
+header h3 {
+  text-align: center;
+}
+
+/* Style the navigation */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+}
+
+nav li {
+  position: relative;
+}
+
+nav a {
+  display: block;
+  padding: 10px;
+  color: #add8e6;
+  text-decoration: none;
+}
+
+/* Style the dropdown menus */
+nav ul ul {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #333;
+  display: none;
+}
+
+nav ul ul li {
+  position: relative;
+}
+
+nav ul ul a {
+  padding: 10px 10px;
+}
+
+nav li:hover > ul {
+  display: block;
+  background-color: #add8e6;
+}
+nav li:hover > ul a {
+  color: #333;
+}
+
+nav li:hover > ul:hover {
+  display: block;
+  background-color: #90ee90;
+}
+
+/* Style the "Sign Out" button */
+#logOut {
+  background-color: #add8e6;
+  color: #333;
+}
+
+#logOut:hover {
+  background-color: #8bc34a;
+  color: #fff;
+}
+
+main {
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+
+main h1 {
+  font-size: 36px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+main p {
+  font-size: 18px;
+  text-align: center;
+}
+
+/* Change submit button and button hover color */
+input[type="submit"],
+button {
+  background-color: #1f246d;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+input[type="submit"]:hover,
+button:hover {
+  background-color: #3e8e41;
+}
+
+/* Update table style */
+table {
+  border-collapse: collapse;
+  width: 90%;
+  margin: 2rem auto;
+  font-size: 1.2rem;
+}
+
+thead {
+  background-color: #3e8e41;
+  color: #fff;
+}
+
+th,
+td {
+  padding: 0.8rem;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+td {
+  background-color: #f6fbf7;
+  color: #000000;
+}
+
+/* Update tabs style */
+@import "compass/css3";
+
+* {
+  box-sizing: border-box;
+}
+
+::selection {
+  background-color: #1f246d;
+}
+
+.tabbed {
+  width: 90%;
+  margin-top: 10px;
+  margin: 2rem auto;
+  box-sizing: border-box;
+}
+
+.tabbed > input {
+  display: none;
+}
+
+.tabbed > label {
+  display: inline-block;
+  padding: 12px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.tabbed > label:hover,
+.tabbed > input:checked + label {
+  background: #444;
+  color: white;
+}
+
+.tabs {
+  clear: both;
+  perspective: 600px;
+}
+
+.tabs > div {
+  margin-top: -10px;
+  width: 100%;
+  position: absolute;
+  border: 2px solid #444;
+  padding: 10px 30px 40px;
+  line-height: 1.4em;
+  opacity: 0;
+  transform: rotateX(-10deg);
+  transform-origin: top center;
+  transition: opacity 0.5s, transform 1s;
+  z-index: 0;
+  background-color: #fff;
+  box-sizing: border-box;
+}
+
+#tab-nav-1:checked ~ .tabs > div:nth-of-type(1),
+#tab-nav-2:checked ~ .tabs > div:nth-of-type(2),
+#tab-nav-3:checked ~ .tabs > div:nth-of-type(3) {
+  transform: rotateX(0);
+  opacity: 1;
+  z-index: 1;
+}
+
+@media screen and (max-width: 700px) {
+  .tabbed {
+    width: 400px;
+  }
+  .tabbed > label {
+    display: none;
+  }
+  .tabs > div {
+    width: 400px;
+    border: none;
+    padding: 0;
+    opacity: 1;
+    position: relative;
+    transform: none;
+    margin-bottom: 60px;
+  }
+  .tabs > div h2 {
+    border-bottom: 2px solid #444;
+    padding-bottom: 0.5em;
+  }
+}
+
+select {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  color: #333;
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  background-color: #f7f7f7;
+  margin-bottom: 5px;
+}
+
+option {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  color: #333;
+  padding: 10px;
+}
+
+#form {
+  background-color: #fff;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+label {
+  padding-left: 1%;
+  margin-bottom: 2%;
+  font-family: "Times New Roman", Times, serif;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 0.3rem;
+  border: 1px solid #ccc;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+input[type="submit"],
+button {
+  background-color: #1f246d;
+  width: 100%;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.3rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+/* Login  styles */
+#form_login {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 2rem;
+  border-radius: 5px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+#form_login label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+/* Error message styles */
+.hidden {
+  display: none;
+}
+
+#error-message {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 1rem;
+}
