@@ -14,7 +14,9 @@ logoffButton.addEventListener("click", () => {
 });
 
 //desplay table
-fetch("http://localhost:8080/teachers", {
+const teacherTable = document.getElementById("students-table");
+
+fetch("http://localhost:8080/api/teachers", {
   method: "GET",
   headers: {
     "Content-Type": "application/json",
@@ -23,13 +25,16 @@ fetch("http://localhost:8080/teachers", {
 })
   .then((response) => response.json())
   .then((teachers) => {
-    const tableBody = document.getElementById("teachers-table");
+    const teacherTable = document.getElementById("teachers-table");
+
     teachers.forEach((teacher) => {
-      const row = tableBody.insertRow();
-      row.insertCell().textContent = teacher.id;
-      row.insertCell().textContent = teacher.name;
-      row.insertCell().textContent = teacher.salary;
-      row.insertCell().textContent = teacher.email;
+      const row = document.createElement("tr");
+      row.innerHTML = `
+      <td>${teacher.teacherId}</td>
+      <td>${teacher.name}</td>
+      <td>${teacher.email}</td>
+      <td>${teacher.salary}</td>
+    `;
+      teacherTable.appendChild(row);
     });
-  })
-  .catch((error) => console.error("Error fetching teachers:", error));
+  });

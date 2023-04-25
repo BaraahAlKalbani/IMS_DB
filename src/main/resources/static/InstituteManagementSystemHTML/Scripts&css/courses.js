@@ -16,7 +16,7 @@ logoffButton.addEventListener("click", () => {
 //display Table
 const coursesTable = document.getElementById("courses-table");
 
-fetch("http://localhost:8080/courses", {
+fetch("http://localhost:8080/api/courses", {
   method: "GET",
   headers: {
     "Content-Type": "application/json",
@@ -27,10 +27,18 @@ fetch("http://localhost:8080/courses", {
   .then((courses) => {
     courses.forEach((course) => {
       const row = coursesTable.insertRow(-1);
-      row.insertCell().textContent = course.id;
+      row.insertCell().textContent = course.courseId;
       row.insertCell().textContent = course.name;
       row.insertCell().textContent = course.description;
-      row.insertCell().textContent = course.teacherId;
+
+      // Check if teacherId is null
+      if (course.teacher_id !== null) {
+        row.insertCell().textContent = course.teacher_id;
+      } else {
+        const noneCell = row.insertCell();
+        noneCell.textContent = "NONE";
+        noneCell.style.color = "red";
+      }
     });
   })
   .catch((error) => {
