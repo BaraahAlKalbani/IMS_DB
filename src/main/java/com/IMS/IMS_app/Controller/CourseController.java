@@ -16,29 +16,33 @@ public class CourseController {
     CourseService courseService;
 
     @GetMapping
-    public List<Course> getAllCourses(){
+    public List<Course> getAllCourses() {
         return courseService.getAllCourses();
     }
 
     @GetMapping(path = "/{id}")
-    public Optional<Course> getSpecificCourse(@PathVariable int id){
+    public Optional<Course> getSpecificCourse(@PathVariable int id) {
         return courseService.getCourseById(id);
     }
 
     @PostMapping
-    public Course createCourse(@RequestBody Course course){
+    public Course createCourse(@RequestBody Course course) {
         return courseService.createCourse(course);
     }
 
     @PutMapping(path = "/{id}")
-    public Optional<Course> updateCourse(@PathVariable int id,@RequestBody Course course){
-        return courseService.updateCourse(id,course);
+    public Optional<Course> updateCourse(@PathVariable int id, @RequestBody Course course) {
+        return courseService.updateCourse(id, course);
     }
 
     @DeleteMapping(path = "/{id}")
-    public Optional<Course> deleteCourse(@PathVariable int id){
+    public Optional<Course> deleteCourse(@PathVariable int id) {
         return courseService.deleteCourse(id);
     }
 
-
+    // New API to announce new courses
+    @PostMapping(path = "/announce")
+    public Course announceCourse(@RequestBody Course course) {
+        return courseService.createCourse(course);
+    }
 }

@@ -1,5 +1,6 @@
 package com.IMS.IMS_app.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import javax.validation.constraints.Pattern;
@@ -18,11 +19,9 @@ public class Teacher {
     private String email;
     @Column
     private Double salary;
-    @Column
-    private long hireAt;
     @OneToOne(mappedBy = "assignedTeacher")
+    @JsonIgnore
     private Course course;
-
 
     public String getName() {
         return name;
@@ -46,14 +45,6 @@ public class Teacher {
 
     public void setSalary(Double salary) {
         this.salary = salary;
-    }
-
-    public long getHireAt() {
-        return hireAt;
-    }
-
-    public void setHireAt(long hireAt) {
-        this.hireAt = hireAt;
     }
 
     public int getTeacherId() {

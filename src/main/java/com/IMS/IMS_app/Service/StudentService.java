@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
+import java.io.File;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,18 +43,35 @@ public class StudentService {
         return student;
     }
 
-    public Optional<Student> updateStudent(int id, Student updatedStudent) {
+    public Optional<Student> updateStudent(int id, Student updatedStudent, Boolean image) {
         Optional<Student> foundStudent = getStudentById(id);
         foundStudent.ifPresent(
                 (currStudent) -> {
-                    currStudent.setName(updatedStudent.getName());
-                    currStudent.setEmail(updatedStudent.getEmail());
-                    currStudent.setAge(updatedStudent.getAge());
+                    if (!updatedStudent.getName().isEmpty()) {
+                        currStudent.setName(updatedStudent.getName());
+                    }
+                    if (!updatedStudent.getEmail().isEmpty()) {
+                        currStudent.setEmail(updatedStudent.getEmail());
+                    }
+                    if (updatedStudent.getAge()!=0) {
+                        currStudent.setAge(updatedStudent.getAge());
+                    }
+                    if (image) {
+                        String filePath = "./src/main/resources/static/data/students_images/" + currStudent.getImageName();
+                        File file = new File(filePath);
+                        if (file.exists()) {
+                            if (file.delete()) {
+                                System.out.println("File deleted successfully.");
+                            }
+                            currStudent.setImageName(updatedStudent.getStudentId() + "_" + updatedStudent.getName() + ".jpg");
+                        }
+                    }
                     studentRepository.save(currStudent);
                 }
         );
         return foundStudent;
     }
+
     public String getStudentImage(int id) {
         Optional<Student> student = getStudentById(id);
         return student.map(Student::getImageName).orElse(null);

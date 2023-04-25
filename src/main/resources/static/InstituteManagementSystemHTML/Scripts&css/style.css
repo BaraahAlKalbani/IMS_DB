@@ -5,12 +5,79 @@
   padding: 0;
 }
 body {
-  background: radial-gradient(ellipse at bottom, #eff1f3 0%, #6a6a6c 100%);
+  background: rgb(30, 30, 40);
   overflow: hidden;
   height: 100vh; /* Set the height of the body to 100% of the viewport height */
   margin: 0; /* Remove any default margins */
   font-family: Arial, sans-serif;
   font-size: 16px;
+  overflow-y: scroll;
+}
+h3 {
+  text-align: center;
+  color: #fff;
+  margin: 1%;
+}
+
+form {
+  max-width: 420px;
+  margin: 50px auto;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="file"],
+input[type="password"],
+select {
+  color: white;
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  border-radius: 5px;
+  line-height: 22px;
+  background-color: transparent;
+  border: 2px solid #add8e6;
+  transition: all 0.3s;
+  padding: 13px;
+  margin-bottom: 15px;
+  width: 100%;
+  box-sizing: border-box;
+  outline: 0;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="number"]:focus,
+input[type="file"]:focus,
+input[type="password"]:focus,
+select:focus {
+  border: 2px solid #8bc34a;
+}
+option {
+  color: #000000;
+}
+
+[type="submit"],
+button {
+  font-family: "Montserrat", Arial, Helvetica, sans-serif;
+  width: 100%;
+  background: #add8e6;
+  border-radius: 5px;
+  border: 0;
+  cursor: pointer;
+  color: #333;
+  font-size: 24px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  transition: all 0.3s;
+  margin-top: -4px;
+  font-weight: 700;
+}
+[type="submit"]:hover,
+button:hover {
+  background: #8bc34a;
+  color: #333;
 }
 
 /* Style the header */
@@ -63,19 +130,22 @@ nav ul ul li {
 
 nav ul ul a {
   padding: 10px 10px;
+  color: #333;
 }
 
 nav li:hover > ul {
   display: block;
+  color: #333;
   background-color: #add8e6;
 }
-nav li:hover > ul a {
+
+nav li:hover > ul li:hover a {
   color: #333;
+  background-color: #8bc34a;
 }
 
 nav li:hover > ul:hover {
   display: block;
-  background-color: #90ee90;
 }
 
 /* Style the "Sign Out" button */
@@ -92,9 +162,11 @@ nav li:hover > ul:hover {
 main {
   margin-top: 100px;
   margin-bottom: 100px;
+  text-align: center;
 }
 
 main h1 {
+  color: white;
   font-size: 36px;
   font-weight: bold;
   text-align: center;
@@ -106,197 +178,56 @@ main p {
   text-align: center;
 }
 
-/* Change submit button and button hover color */
-input[type="submit"],
-button {
-  background-color: #1f246d;
-  color: #fff;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
+.table-container {
+  display: flex;
+  justify-content: center;
 }
 
-input[type="submit"]:hover,
-button:hover {
-  background-color: #3e8e41;
-}
-
-/* Update table style */
 table {
   border-collapse: collapse;
-  width: 90%;
+  width: 100%; /* Set the width to 100% to make it flexible */
   margin: 2rem auto;
   font-size: 1.2rem;
+  overflow-x: auto; /* Add horizontal scroll when table overflows */
+  max-height: 400px; /* Set a maximum height for the table */
 }
 
 thead {
-  background-color: #3e8e41;
-  color: #fff;
+  background-color: #8bc34a;
+  color: #333;
 }
 
 th,
 td {
   padding: 0.8rem;
   text-align: left;
-  border: 1px solid #ddd;
+  border: 1px solid #fff;
+  white-space: nowrap; /* Prevent text wrapping in table cells */
 }
 
 tr:nth-child(even) {
-  background-color: #f2f2f2;
+  background-color: #fff;
 }
 
 td {
-  background-color: #f6fbf7;
+  background-color: #fff;
   color: #000000;
-}
-
-/* Update tabs style */
-@import "compass/css3";
-
-* {
-  box-sizing: border-box;
-}
-
-::selection {
-  background-color: #1f246d;
-}
-
-.tabbed {
-  width: 90%;
-  margin-top: 10px;
-  margin: 2rem auto;
-  box-sizing: border-box;
-}
-
-.tabbed > input {
-  display: none;
-}
-
-.tabbed > label {
-  display: inline-block;
-  padding: 12px 20px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.tabbed > label:hover,
-.tabbed > input:checked + label {
-  background: #444;
-  color: white;
-}
-
-.tabs {
-  clear: both;
-  perspective: 600px;
-}
-
-.tabs > div {
-  margin-top: -10px;
-  width: 100%;
-  position: absolute;
-  border: 2px solid #444;
-  padding: 10px 30px 40px;
-  line-height: 1.4em;
-  opacity: 0;
-  transform: rotateX(-10deg);
-  transform-origin: top center;
-  transition: opacity 0.5s, transform 1s;
-  z-index: 0;
-  background-color: #fff;
-  box-sizing: border-box;
-}
-
-#tab-nav-1:checked ~ .tabs > div:nth-of-type(1),
-#tab-nav-2:checked ~ .tabs > div:nth-of-type(2),
-#tab-nav-3:checked ~ .tabs > div:nth-of-type(3) {
-  transform: rotateX(0);
-  opacity: 1;
-  z-index: 1;
-}
-
-@media screen and (max-width: 700px) {
-  .tabbed {
-    width: 400px;
-  }
-  .tabbed > label {
-    display: none;
-  }
-  .tabs > div {
-    width: 400px;
-    border: none;
-    padding: 0;
-    opacity: 1;
-    position: relative;
-    transform: none;
-    margin-bottom: 60px;
-  }
-  .tabs > div h2 {
-    border-bottom: 2px solid #444;
-    padding-bottom: 0.5em;
-  }
-}
-
-select {
-  font-family: Arial, sans-serif;
-  font-size: 16px;
-  color: #333;
-  padding: 10px;
-  border: 2px solid #ccc;
-  border-radius: 5px;
-  background-color: #f7f7f7;
-  margin-bottom: 5px;
-}
-
-option {
-  font-family: Arial, sans-serif;
-  font-size: 16px;
-  color: #333;
-  padding: 10px;
-}
-
-#form {
-  background-color: #fff;
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 1rem;
-  border-radius: 0.5rem;
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
 }
 
 label {
   padding-left: 1%;
   margin-bottom: 2%;
-  font-family: "Times New Roman", Times, serif;
+  color: white;
+  font-size: 24px;
+}
+h2 {
+  color: white;
+  font-size: 30px;
 }
 
-input[type="text"],
-input[type="email"],
-input[type="password"] {
-  width: 100%;
-  padding: 0.5rem;
-  border-radius: 0.3rem;
-  border: 1px solid #ccc;
-  margin-bottom: 1rem;
-  font-size: 1rem;
-}
-input[type="submit"],
-button {
-  background-color: #1f246d;
-  width: 100%;
-  color: #fff;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 0.3rem;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-/* Login  styles */
 #form_login {
-  background-color: #fff;
-  border: 1px solid #ddd;
+  background-color: #00000079;
+  border: 2px solid #add8e6;
   padding: 2rem;
   border-radius: 5px;
   max-width: 400px;
@@ -317,4 +248,47 @@ button {
   color: red;
   font-size: 0.9rem;
   margin-top: 1rem;
+}
+
+/* Container div */
+#studentsDiv {
+  color: #fff;
+  font-family: "Roboto", sans-serif;
+  display: flex; /* Add flex display */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+}
+
+/* Ordered list */
+#data {
+  counter-reset: item;
+  list-style-type: none;
+  padding: 0;
+  color: #8bc34a;
+}
+
+/* List item */
+#data li {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+/* List item image */
+#data li img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border: 2px solid #add8e6;
+  border-radius: 50%;
+}
+
+/* List item spans */
+#data li span {
+  display: block;
+  margin-top: 10px;
+}
+
+/* List item spans: strong */
+#data li span strong {
+  color: #add8e6;
 }

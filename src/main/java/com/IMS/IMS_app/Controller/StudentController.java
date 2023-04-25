@@ -4,11 +4,8 @@ import com.IMS.IMS_app.Model.Student;
 import com.IMS.IMS_app.Service.StudentService;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +20,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/students")
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+@CrossOrigin(origins = "*", allowedHeaders = {"*", "Authorization", "Content-Type"})
 public class StudentController {
     @Autowired
     StudentService studentService;
@@ -45,7 +42,7 @@ public class StudentController {
 
 
     @PostMapping(path = "/withImage",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public Student createStudentWithImage(@RequestParam String name, @RequestParam String email, @RequestParam int age, @RequestParam(required = false) MultipartFile image) throws IOException {
+    public Student createStudentWithImage(@RequestParam String name,@Valid @RequestParam String email, @RequestParam int age, @RequestParam(required = false) MultipartFile image) throws IOException {
         Student newStudent = new Student();
         newStudent.setAge(age);
         newStudent.setEmail(email);
@@ -57,7 +54,6 @@ public class StudentController {
         }
         else {
             newStudent = studentService.createStudent(newStudent,false);
-
         }
         return newStudent;
     }
@@ -90,10 +86,27 @@ public class StudentController {
         }
     }
 
-    @PutMapping(path = "/{id}")
-    public Optional<Student> updateSpecificStudent(@PathVariable int id,@RequestBody Student student){
-        return studentService.updateStudent(id,student);
+    @PutMapping(path = "/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public Optional<Student> updateSpecificStudent(@PathVariable int id, @RequestParam String name,
+                                                   @Valid @RequestParam String email, @RequestParam int age,
+                                                   @RequestParam(required = false) MultipartFile image) throws IOException {
+        Student student = new Student();
+        student.setAge(age);
+        student.setEmail(email);
+        student.setName(name);
+        if (image != null && !image.isEmpty()) {
+            Optional<Student> updatedStudent = studentService.updateStudent(id, student, true);
+            student = updatedStudent.orElse(student);
+            FileUtils.writeByteArrayToFile(
+                    new File("./src/main/resources/static/data/students_images/" + student.getImageName()),
+                    image.getBytes());
+            return updatedStudent;
+        } else {
+            return studentService.updateStudent(id, student, false);
+        }
     }
+
+
 
     @DeleteMapping(path = "/{id}")
     public Optional<Student> deleteSpecificStudent(@PathVariable int id){

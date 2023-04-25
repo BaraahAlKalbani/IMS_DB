@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <title>Institute Management System</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="Scripts&css/style.css"/>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li>
+                    <a href="students.html">Students records</a>
+                    <ul>
+                        <li><a href="addStudent.html">add</a></li>
+                        <li><a href="updateStudent.html">Update</a></li>
+                        <li><a href="deleteStudent.html">delete</a></li>
+                        <li><a href="searchStudent.html">Search</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="teachers.html">Teachers records</a>
+                    <ul>
+                        <li><a href="addTeacher.html">add</a></li>
+                        <li><a href="updateTeacher.html">Update</a></li>
+                        <li><a href="deleteTeacher.html">delete</a></li>
+                        <li><a href="searchTeacher.html">Search</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="courses.html">Courses list</a>
+                    <ul>
+                        <li><a href="addCourse.html">add</a></li>
+                        <li><a href="addCourse.html">Update</a></li>
+                        <li><a href="deleteCourse.html">delete</a></li>
+                    </ul>
+                </li>
+                <li><a id="logOut">Sign Out</a></li>
+            </ul>
+            <h2>Institute Management System</h2>
+        </nav>
+    </header>
+<body>
+    <div>
+        <form id="UpdateTeacherForm">
+          <label for="id">ID:</label><br />
+          <select id="id" name="id" required>
+            <option value="">Select Teacher ID</option>
+          </select>
+          <input type="text" id="name" name="name" placeholder="Teacher Name">
+          <input type="email" id="email" name="email" placeholder="Email">
+          <input type="text" id="salary" name="salary" placeholder="Salary">
+          <input id="update" type="submit" value="Update Teacher">
+        </form>
+      </div>      
+<script src="Scripts&css/updateTeacher.js"></script>
+</body>
+</html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="">
   <head>
     <title>Institute Management System</title>
     <meta charset="UTF-8" />
@@ -42,20 +42,37 @@
     </nav>
   </header>
   <body>
-    <main>
-      <h1>Courses List</h1>
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Discription</th>
-            <th>Assighend Teacher ID</th>
-          </tr>
-        </thead>
-        <tbody id="courses-table"></tbody>
-      </table>
-    </main>
-    <script type="text/javascript" src="Scripts&css/courses.js"></script>
+    <h2>Teachers</h2>
+    <div>
+      <form id="TeacherForm">
+        <h2>Add a NEW Teacher</h2>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          placeholder="Teacher Name"
+          required
+        />
+        <br />
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="Email"
+          required
+        />
+        <br />
+        <input
+          type="text"
+          id="salary"
+          name="salary"
+          placeholder="Salary"
+          required
+        />
+        <br />
+        <input type="submit" value="Hire Teacher" />
+      </form>
+    </div>
+    <script src="Scripts&css/addTeacher.js"></script>
   </body>
 </html>
