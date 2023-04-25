@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="">
   <head>
     <title>Institute Management System</title>
     <meta charset="UTF-8" />
@@ -42,20 +42,31 @@
     </nav>
   </header>
   <body>
-    <main>
-      <h1>Courses List</h1>
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Discription</th>
-            <th>Assighend Teacher ID</th>
-          </tr>
-        </thead>
-        <tbody id="courses-table"></tbody>
-      </table>
-    </main>
-    <script type="text/javascript" src="Scripts&css/courses.js"></script>
+    <div>
+      <form id="UpdateCourseForm">
+        <label for="id">ID:</label><br />
+        <select id="id" name="id" required>
+          <option value="">Select Course ID</option>
+        </select>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          placeholder="course Name"
+          required
+        />
+        <br />
+        <input
+          type="text"
+          id="description"
+          name="description"
+          placeholder="description"
+          required
+        />
+        <br />
+        <input id="update" type="submit" value="Update Course" />
+      </form>
+    </div>
+    <script src="Scripts&css/updateCourse.js"></script>
   </body>
 </html>
