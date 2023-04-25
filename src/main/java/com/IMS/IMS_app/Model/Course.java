@@ -27,8 +27,8 @@ public class Course {
     private Teacher assignedTeacher;
 
     @JsonProperty("teacher_id")
-    public Integer getTeacherID(){
-        return assignedTeacher != null ? assignedTeacher.getTeacherId():null;
+    public String getTeacherID(){
+        return assignedTeacher != null ? (assignedTeacher.getTeacherId()+" : "+assignedTeacher.getName()):null;
     }
 
     @ManyToMany

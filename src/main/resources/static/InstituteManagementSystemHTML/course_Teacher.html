@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <title>Institute Management System</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="Scripts&css/style.css"/>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li>
+                    <a href="students.html">Students records</a>
+                    <ul>
+                        <li><a href="addStudent.html">add</a></li>
+                        <li><a href="updateStudent.html">Update</a></li>
+                        <li><a href="deleteStudent.html">delete</a></li>
+                        <li><a href="searchStudent.html">Search</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="teachers.html">Teachers records</a>
+                    <ul>
+                        <li><a href="addTeacher.html">add</a></li>
+                        <li><a href="updateTeacher.html">Update</a></li>
+                        <li><a href="deleteTeacher.html">delete</a></li>
+                        <li><a href="searchTeacher.html">Search</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="courses.html">Courses list</a>
+                    <ul>
+                        <li><a href="addCourse.html">add</a></li>
+                        <li><a href="addCourse.html">Update</a></li>
+                        <li><a href="deleteCourse.html">delete</a></li>
+                    </ul>
+                </li>
+                <li><a id="logOut">Sign Out</a></li>
+            </ul>
+            <h2>Institute Management System</h2>
+        </nav>
+    </header>
+<body>
+    <div>
+        <form id="CourseForm" method="post"  action="http://localhost:8080/api/assigner">
+            <h2>assign Teacher To a Course</h2>
+          <label for="course_id">Course ID:</label><br />
+          <select id="course_id" name="course_id" required>
+            <option value="">Select Course ID</option>
+          </select>
+          <label for="teacher_id">Teacher ID:</label><br />
+          <select id="teacher_id" name="teacher_id" required>
+            <option value="">Select Teacher ID</option>
+          </select>
+          <input id="submit" type="submit" value="add Teacher to Course">
+        </form>
+      </div>      
+<script src="Scripts&css/course_teacher.js"></script>
+</body>
+</html>

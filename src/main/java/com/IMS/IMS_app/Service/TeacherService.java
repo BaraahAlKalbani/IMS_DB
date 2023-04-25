@@ -22,11 +22,12 @@ public class TeacherService {
     }
 
     public Teacher hireTeacher(Teacher teacher) {
-        if (teacher == null) {
-            throw new IllegalArgumentException("Teacher object cannot be null");
+        if (teacher == null || teacher.getName() == null || teacher.getEmail() == null || teacher.getSalary() == null) {
+            throw new IllegalArgumentException("Teacher object or its fields cannot be null");
         }
         return teacherRepository.save(teacher);
     }
+
 
     public Optional<Teacher> fireTeacher(int id) {
         Optional<Teacher> teacher = getTeacherById(id);
@@ -39,8 +40,7 @@ public class TeacherService {
         foundTeacher.ifPresent(
                 (currTeacher)-> {
                     currTeacher.setName(updatedTeacher.getName());
-                    currTeacher.setName(updatedTeacher.getEmail());
-                    currTeacher.setHireAt(updatedTeacher.getHireAt());
+                    currTeacher.setEmail(updatedTeacher.getEmail());
                     currTeacher.setSalary(updatedTeacher.getSalary());
                     teacherRepository.save(currTeacher);
                 }

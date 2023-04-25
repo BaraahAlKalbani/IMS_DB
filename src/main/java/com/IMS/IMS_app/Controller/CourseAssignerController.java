@@ -6,10 +6,7 @@ import com.IMS.IMS_app.Model.Teacher;
 import com.IMS.IMS_app.Service.CourseService;
 import com.IMS.IMS_app.Service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
@@ -21,17 +18,18 @@ public class CourseAssignerController {
     CourseService courseService;
     @Autowired
     TeacherService teacherService;
+
     @PostMapping
-    public CourseAssigner assigneMentorToCourse(CourseAssigner assigner)
-    {
-        Optional<Course>optionalCourse=courseService.getCourseById(assigner.getCourse_id());
-        Optional<Teacher>optionalTeacher=teacherService.getTeacherById(assigner.getTeacher_id());
-        optionalCourse.ifPresent((course)->{
-            optionalTeacher.ifPresent((teacher)->{
+    public CourseAssigner assignMentorToCourse(@RequestBody CourseAssigner assigner) {
+        Optional<Course> optionalCourse = courseService.getCourseById(assigner.getCourse_id());
+        Optional<Teacher> optionalTeacher = teacherService.getTeacherById(assigner.getTeacher_id());
+        optionalCourse.ifPresent((course) -> {
+            optionalTeacher.ifPresent((teacher) -> {
                 course.setAssignedTeacher(teacher);
-                courseService.createCourse(course);
+                courseService.updateCourse(course.getCourseId(), course);
             });
         });
         return assigner;
     }
+
 }
